@@ -14,7 +14,7 @@ export default function Home() {
       <Navbar />
       <HeroSection />
 
-      
+
       <TickerBanner />
       <ServicesSection />
       <StatsSection />

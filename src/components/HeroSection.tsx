@@ -1,35 +1,35 @@
 'use client';
 import { useState, useRef, useCallback } from 'react';
 import { Upload, Camera, Sparkles, ArrowRight, TrendingUp, Users, Zap } from 'lucide-react';
- 
+
 const floatingBadges = [
-  { icon: TrendingUp, label: '10x ROI', sub: 'Average Return', color: '#f5c842', pos: 'top-[12%] right-[2%]' },
-  { icon: Users, label: '500K+', sub: 'Audience Reached', color: '#ff6b35', pos: 'bottom-[25%] right-[0%]' },
-  { icon: Zap, label: 'Growth', sub: 'SEO & Ads Expert', color: '#e040fb', pos: 'top-[40%] left-[-5%] md:left-[-8%]' },
+  { icon: TrendingUp, label: '10x ROI', sub: 'Average Return', color: '#f5c842', pos: 'top-[12%] right-[2%]', delay: '0s' },
+  { icon: Users, label: '500K+', sub: 'Audience Reached', color: '#ff6b35', pos: 'bottom-[25%] right-[0%]', delay: '2s' },
+  { icon: Zap, label: 'Growth', sub: 'SEO & Ads Expert', color: '#e040fb', pos: 'top-[40%] left-[-5%] md:left-[-8%]', delay: '1s' },
 ];
- 
+
 export default function HeroSection() {
   const [profileImage, setProfileImage] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
- 
+
   const handleFile = (file: File) => {
     if (!file.type.startsWith('image/')) return;
     const reader = new FileReader();
     reader.onload = (e) => setProfileImage(e.target?.result as string);
     reader.readAsDataURL(file);
   };
- 
+
   const onDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
     const file = e.dataTransfer.files[0];
     if (file) handleFile(file);
   }, []);
- 
+
   const onDragOver = (e: React.DragEvent) => { e.preventDefault(); setIsDragging(true); };
   const onDragLeave = () => setIsDragging(false);
- 
+
   return (
     <section
       id="about"
@@ -48,10 +48,10 @@ export default function HeroSection() {
           }}
         />
       </div>
- 
+
       <div className="max-w-7xl mx-auto px-6 w-full">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
- 
+
           {/* Left: Text Content */}
           <div className="order-2 lg:order-1">
             {/* Badge */}
@@ -61,7 +61,7 @@ export default function HeroSection() {
                 Digital Marketing Expert
               </span>
             </div>
- 
+
             {/* Headline */}
             <h1
               className="text-5xl md:text-6xl xl:text-7xl font-bold leading-[1.05] mb-6 animate-fade-up delay-100"
@@ -89,7 +89,7 @@ export default function HeroSection() {
                 </svg>
               </span>
             </h1>
- 
+
             {/* Sub */}
             <p className="text-[#7a7a90] text-lg leading-relaxed max-w-xl mb-10 animate-fade-up delay-200">
               Performance-driven digital marketer specializing in{' '}
@@ -99,7 +99,7 @@ export default function HeroSection() {
               <span className="text-[#f0ede8] font-medium">Content Strategy</span>.
               I build systems that scale brands and deliver measurable ROI.
             </p>
- 
+
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 mb-12 animate-fade-up delay-300">
               <a
@@ -116,7 +116,7 @@ export default function HeroSection() {
                 See My Work
               </a>
             </div>
- 
+
             {/* Social proof */}
             <div className="flex items-center gap-6 animate-fade-up delay-400">
               <div className="flex -space-x-3">
@@ -143,7 +143,7 @@ export default function HeroSection() {
               </div>
             </div>
           </div>
- 
+
           {/* Right: Profile Image */}
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-scale-in delay-200">
             <div className="relative">
@@ -153,7 +153,7 @@ export default function HeroSection() {
                 style={{ borderSpacing: '10px' }}
               />
               <div className="absolute -inset-16 rounded-full border border-[rgba(245,200,66,0.06)]" />
- 
+
               {/* Profile image / upload zone */}
               <div
                 className={`relative w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden upload-zone ${isDragging ? 'dragover' : ''}`}
@@ -190,11 +190,11 @@ export default function HeroSection() {
                     </div>
                   </div>
                 )}
- 
+
                 {/* Glow ring */}
                 <div className="absolute inset-0 rounded-full ring-2 ring-[rgba(245,200,66,0.2)] pointer-events-none" />
               </div>
- 
+
               {/* Hidden file input */}
               <input
                 ref={fileRef}
@@ -203,13 +203,13 @@ export default function HeroSection() {
                 className="hidden"
                 onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
               />
- 
+
               {/* Floating badges */}
-              {floatingBadges.map(({ icon: Icon, label, sub, color, pos }) => (
+              {floatingBadges.map(({ icon: Icon, label, sub, color, pos, delay }) => (
                 <div
                   key={label}
                   className={`absolute ${pos} glass-gold rounded-2xl px-4 py-3 flex items-center gap-3 shadow-lg animate-float`}
-                  style={{ animationDelay: `${Math.random() * 2}s` }}
+                  style={{ animationDelay: delay }}
                 >
                   <div
                     className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
