@@ -13,6 +13,8 @@ export default function Home() {
     <main className="relative">
       <Navbar />
       <HeroSection />
+
+      
       <TickerBanner />
       <ServicesSection />
       <StatsSection />
