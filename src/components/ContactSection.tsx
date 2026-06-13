@@ -1,28 +1,27 @@
-
 'use client';
 import { useState } from 'react';
-import { Send, Mail, Phone, MapPin, Linkedin, Instagram, Twitter } from 'lucide-react';
- 
+import { Send, Mail, Phone, MapPin, Link2, AtSign, Hash } from 'lucide-react';
+
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', email: '', budget: '', message: '' });
   const [sent, setSent] = useState(false);
- 
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSent(true);
     setTimeout(() => setSent(false), 4000);
     setForm({ name: '', email: '', budget: '', message: '' });
   };
- 
+
   const inputClass =
     'w-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-sm text-[#f0ede8] placeholder-[#7a7a90] focus:outline-none focus:border-[rgba(245,200,66,0.4)] focus:bg-[rgba(245,200,66,0.02)] transition-all duration-200';
- 
+
   return (
     <section id="contact" className="py-28 relative">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[rgba(245,200,66,0.04)] blur-[120px] rounded-full" />
       </div>
- 
+
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -41,7 +40,7 @@ export default function ContactSection() {
             Let's discuss your goals and build a strategy that delivers real, measurable results.
           </p>
         </div>
- 
+
         <div className="grid lg:grid-cols-5 gap-8">
           {/* Info */}
           <div className="lg:col-span-2 flex flex-col gap-6">
@@ -63,16 +62,16 @@ export default function ContactSection() {
                 </div>
               </div>
             ))}
- 
+
             {/* Socials */}
             <div className="glass-gold rounded-2xl p-5">
               <p className="text-xs text-[#7a7a90] mb-4 uppercase tracking-widest">Follow Me</p>
               <div className="flex gap-3">
                 {[
-                  { icon: Linkedin, color: '#f5c842', href: '#' },
-                  { icon: Instagram, color: '#ff6b35', href: '#' },
-                  { icon: Twitter, color: '#e040fb', href: '#' },
-                ].map(({ icon: Icon, color, href }, i) => (
+                  { icon: Link2, color: '#f5c842', href: '#', label: 'LinkedIn' },
+                  { icon: AtSign, color: '#ff6b35', href: '#', label: 'Instagram' },
+                  { icon: Hash, color: '#e040fb', href: '#', label: 'Twitter/X' },
+                ].map(({ icon: Icon, color, href, label }, i) => (
                   <a
                     key={i}
                     href={href}
@@ -85,7 +84,7 @@ export default function ContactSection() {
               </div>
             </div>
           </div>
- 
+
           {/* Form */}
           <form
             onSubmit={handleSubmit}
@@ -114,7 +113,7 @@ export default function ContactSection() {
                 />
               </div>
             </div>
- 
+
             <div>
               <label className="text-xs text-[#7a7a90] mb-1.5 block">Monthly Budget</label>
               <select
@@ -129,7 +128,7 @@ export default function ContactSection() {
                 <option value="10k+" className="bg-[#0d0d1c]">$10,000+</option>
               </select>
             </div>
- 
+
             <div>
               <label className="text-xs text-[#7a7a90] mb-1.5 block">Tell Me About Your Project</label>
               <textarea
@@ -141,7 +140,7 @@ export default function ContactSection() {
                 required
               />
             </div>
- 
+
             <button
               type="submit"
               className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-semibold text-sm text-black bg-gradient-to-r from-[#f5c842] to-[#ff6b35] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-[0_8px_30px_rgba(245,200,66,0.25)]"
@@ -161,4 +160,3 @@ export default function ContactSection() {
     </section>
   );
 }
- 
