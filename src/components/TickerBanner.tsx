@@ -1,34 +1,21 @@
 const items = [
-  '⚡ SEO Optimization',
-  '🎯 Google Ads',
-  '📱 Social Media Marketing',
-  '📧 Email Marketing',
-  '🔥 Meta Ads',
-  '📊 Analytics & Reporting',
-  '✍️ Content Strategy',
-  '🚀 Growth Hacking',
-  '🎨 Brand Strategy',
-  '💡 CRO & UX',
-  '📈 Performance Marketing',
-  '🤖 Marketing Automation',
+  '⚡ SEO Optimization','🎯 Google Ads','📱 Social Media','📧 Email Marketing',
+  '🔥 Meta Ads','📊 Analytics','✍️ Content Strategy','🚀 Growth Hacking',
+  '🎨 Brand Strategy','💡 CRO & UX','📈 Performance Marketing','🤖 Automation',
 ];
- 
+const doubled = [...items, ...items];
+
 export default function TickerBanner() {
-  const doubled = [...items, ...items];
   return (
-    <div className="py-5 border-y border-[rgba(245,200,66,0.1)] bg-[rgba(245,200,66,0.02)] overflow-hidden">
+    <div className="ticker-wrap" style={{ padding:'14px 0' }}>
       <div className="ticker">
         {doubled.map((item, i) => (
-          <span
-            key={i}
-            className="text-sm font-medium text-[#7a7a90] hover:text-[#f5c842] transition-colors flex-shrink-0 flex items-center gap-3"
-          >
+          <span key={i} style={{ fontSize:13, fontWeight:500, color:'var(--text-muted)', flexShrink:0, display:'flex', alignItems:'center', gap:10 }}>
             {item}
-            <span className="text-[#f5c842] opacity-40 mx-2">◆</span>
+            <span style={{ color:'var(--gold)', opacity:0.4 }}>◆</span>
           </span>
         ))}
       </div>
     </div>
   );
 }
- 
